@@ -24,7 +24,7 @@ sudo /usr/local/bin/pip install gunicorn gevent flask jinja2 PyMySQL sqlalchemy
 ## Todo
 * Create User Model with SQLAlchemy ORM
 * python admin.py create-admin to init admin user
-* app.py models.py
+* app.py models.py config.py
 * login.html index.html
 * login with user & password example
  
