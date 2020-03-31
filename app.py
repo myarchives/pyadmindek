@@ -1,7 +1,6 @@
 from models import *
 import json
 import time
-import jinja2
 from flask import *
 
 class DatetimeEncoder(json.JSONEncoder):
@@ -14,9 +13,30 @@ class DatetimeEncoder(json.JSONEncoder):
 def to_json(data):
     return json.dumps(data, cls=DatetimeEncoder)
 
-app = Flask(__name__)
+def auth():
+    return 'username' in session
 
-# ----------------------------- Home
+app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
+# ----------------------------- Routes
 @app.route('/')
 def home():
-    return 'Hello, PyAdminDek!'
+    return render_template("index.html")
+
+@app.route('/login')
+def login():
+    session['username'] = 'Admin'
+    return render_template("login.html")
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect('/login')
+
+@app.route('/dashboard')
+def dashboard():
+    if auth():
+        return render_template("dashboard.html")
+    else:
+        return redirect('login')

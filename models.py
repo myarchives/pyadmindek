@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 engine = create_engine(config.MYSQL_CONNECTION_URL, encoding="utf-8")
 
 Session = sessionmaker(bind=engine)
-session = Session()
+db = Session()
 Base = declarative_base()
 
 class User(Base):

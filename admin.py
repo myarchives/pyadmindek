@@ -23,12 +23,12 @@ if __name__ == "__main__":
             else:
                 new_password = base64.b64encode(
                     hmac.new(config.PASSWORD_SECRET.encode('utf-8'), admin_password_1.encode('utf-8'), digestmod=hashlib.sha256).digest())
-                admin = session.query(User).filter(User.username == 'admin').first()
+                admin = db.query(User).filter(User.username == 'admin').first()
                 if admin:
                     admin.password = new_password
-                    session.commit()
+                    db.commit()
                 else:
                     admin = User(username='admin', password=new_password)
-                    session.add(admin)
-                    session.commit()
+                    db.add(admin)
+                    db.commit()
                 print('OK')
