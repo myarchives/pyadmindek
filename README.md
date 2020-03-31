@@ -26,7 +26,18 @@ sudo /usr/local/bin/pip install --upgrade pip
 sudo /usr/local/bin/pip install gunicorn gevent flask jinja2 PyMySQL sqlalchemy 
 git clone https://github.com/hide2/pyadmindek.git
 cd pyadmindek
-FLASK_APP=app.py FLASK_ENV=development flask run --host=0.0.0.0
+```
+
+## Init Admin
+```
+python admin.py create-admin
+```
+
+## Start Server
+```
+FLASK_APP=app.py FLASK_ENV=development flask run --host=0.0.0.0 --port=8888
+or
+./restart.sh
 ```
 
 ## Todo
