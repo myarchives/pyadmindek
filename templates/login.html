@@ -38,7 +38,8 @@
     <link rel="stylesheet" type="text/css" href="static/css/icofont.css">
 
     <link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
-
+    <link rel="stylesheet" type="text/css" href="static/css/notification.css">
+    <link rel="stylesheet" type="text/css" href="static/css/animate.css">
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
     <link rel="stylesheet" type="text/css" href="static/css/pages.css">
 </head>
@@ -114,18 +115,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group form-primary">
-                                    <input type="text" name="user-name" class="form-control" required="">
+                                    <input type="text" id="username" name="username" class="form-control" required="" value="">
                                     <span class="form-bar"></span>
                                     <label class="float-label">Username</label>
                                 </div>
                                 <div class="form-group form-primary">
-                                    <input type="password" name="password" class="form-control" required="">
+                                    <input type="password" id="password" name="password" class="form-control" required="" value="">
                                     <span class="form-bar"></span>
                                     <label class="float-label">Password</label>
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="button"
+                                        <button id="login" type="button"
                                             class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
                                     </div>
                                 </div>
@@ -191,14 +192,13 @@
     <script type="4878d7dfa7bc22a8dfa99416-text/javascript" src="static/js/jquery-ui.min.js"></script>
     <script type="4878d7dfa7bc22a8dfa99416-text/javascript" src="static/js/popper.min.js"></script>
     <script type="4878d7dfa7bc22a8dfa99416-text/javascript" src="static/js/bootstrap.min.js"></script>
-
-    <script src="static/js/waves.min.js" type="4878d7dfa7bc22a8dfa99416-text/javascript"></script>
-
+    <script type="4878d7dfa7bc22a8dfa99416-text/javascript" src="static/js/waves.min.js"></script>
     <script type="4878d7dfa7bc22a8dfa99416-text/javascript" src="static/js/jquery.slimscroll.js"></script>
-
     <script type="4878d7dfa7bc22a8dfa99416-text/javascript" src="static/js/modernizr.js"></script>
     <script type="4878d7dfa7bc22a8dfa99416-text/javascript" src="static/js/css-scrollbars.js"></script>
     <script type="4878d7dfa7bc22a8dfa99416-text/javascript" src="static/js/common-pages.js"></script>
+    <script type="4878d7dfa7bc22a8dfa99416-text/javascript" src="static/js/bootstrap-growl.min.js"></script>
+    <script type="4878d7dfa7bc22a8dfa99416-text/javascript" src="static/js/notification.js"></script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"
         type="4878d7dfa7bc22a8dfa99416-text/javascript"></script>
@@ -208,6 +208,19 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-23581568-13');
+
+  $('#login').click(function(e) {
+    $.post('/login', {
+        username:$('#username').val(), password:$('#password').val()
+    }, function(r) {
+        var r = JSON.parse(r);
+        if (r.code == '200') {
+            window.location.href = '/dashboard';
+        } else {
+            notify(r.message);
+        } 
+    });
+  });
 </script>
     <script src="static/js/rocket-loader.min.js" data-cf-settings="4878d7dfa7bc22a8dfa99416-|49" defer=""></script>
 </body>

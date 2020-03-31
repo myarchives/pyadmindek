@@ -45,5 +45,5 @@ or
 * ~~python admin.py create-admin to init admin user~~
 * ~~app.py models.py config.py~~
 * ~~login.html index.html dashboard.html~~
-* login with user & password example
+* ~~login with user & password example~~
  

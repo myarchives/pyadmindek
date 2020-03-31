@@ -1,8 +1,7 @@
 import sys
+import auth
 from models import *
-import hashlib
-import hmac
-import base64
+
 
 def init_db():
     Base.metadata.create_all(bind=engine)
@@ -21,8 +20,7 @@ if __name__ == "__main__":
             if admin_password_1 != admin_password_2:
                 print("Password not match!")
             else:
-                new_password = base64.b64encode(
-                    hmac.new(config.PASSWORD_SECRET.encode('utf-8'), admin_password_1.encode('utf-8'), digestmod=hashlib.sha256).digest())
+                new_password = auth.enc(admin_password_1)
                 admin = db.query(User).filter(User.username == 'admin').first()
                 if admin:
                     admin.password = new_password
