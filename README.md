@@ -44,6 +44,7 @@ or
 * ~~Create User Model with SQLAlchemy ORM~~
 * ~~python admin.py create-admin to init admin user~~
 * ~~app.py models.py config.py~~
-* ~~login.html index.html dashboard.html~~
+* ~~/index /login /logout /dashboard
 * ~~login with user & password example~~
- 
+* /users Select/Insert/Update/Delete
+* Table&Chart

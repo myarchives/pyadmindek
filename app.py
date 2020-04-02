@@ -51,3 +51,12 @@ def dashboard():
         return render_template("dashboard.html")
     else:
         return redirect('login')
+
+
+@app.route('/users')
+def users():
+    if logined():
+        users = db.query(User).all()
+        return render_template("users.html", users=users)
+    else:
+        return redirect('login')
